@@ -253,7 +253,7 @@ class Logger
 
         if ($this->mode === self::FILE_LOGGER) {
             if (!$this->optional || !\file_exists(\pathinfo($this->optional, PATHINFO_DIRNAME))) {
-                $this->optional = Magic::$script_cwd.DIRECTORY_SEPARATOR.'MadelineProto.log';
+                $this->optional = '/tmp/MadelineProto.log';
             }
             if (!\str_ends_with($this->optional, '.log')) {
                 $this->optional .= '.log';
@@ -309,7 +309,7 @@ class Logger
                 \ini_set('log_errors', "1");
                 \ini_set('error_log', $this->mode === self::FILE_LOGGER
                     ? $this->optional
-                    : Magic::$script_cwd.DIRECTORY_SEPARATOR.'MadelineProto.log');
+                    : '/tmp/MadelineProto.log');
             } catch (\danog\MadelineProto\Exception $e) {
                 $this->logger('Could not enable PHP logging');
             }

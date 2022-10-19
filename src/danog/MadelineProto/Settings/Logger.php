@@ -44,7 +44,7 @@ class Logger extends SettingsAbstract
             $settings['logger']['logger_param'] = $settings['logger']['param'];
         }
         if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' && isset($settings['logger']['logger_param']) && $settings['logger']['logger_param'] === 'MadelineProto.log') {
-            $settings['logger']['logger_param'] = Magic::$script_cwd.'/MadelineProto.log';
+            $settings['logger']['logger_param'] = '/tmp/MadelineProto.log';
         }
         switch ($settings['logger']['logger_level'] ?? null) {
             case 'ULTRA_VERBOSE':
@@ -87,7 +87,7 @@ class Logger extends SettingsAbstract
             ? MadelineProtoLogger::ECHO_LOGGER
             : MadelineProtoLogger::FILE_LOGGER;
         Magic::start(true);
-        $this->extra = Magic::$script_cwd.'/MadelineProto.log';
+        $this->extra = '/tmp/MadelineProto.log';
     }
 
     public function __sleep()
@@ -105,7 +105,7 @@ class Logger extends SettingsAbstract
             ? MadelineProtoLogger::ECHO_LOGGER
             : MadelineProtoLogger::FILE_LOGGER;
         if (!$this->extra && $this->type === MadelineProtoLogger::FILE_LOGGER) {
-            $this->extra = Magic::$script_cwd.'/MadelineProto.log';
+            $this->extra = '/tmp/MadelineProto.log';
         }
 
         $this->init();

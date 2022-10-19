@@ -251,15 +251,15 @@ class Magic
             // Important, obtain root relative to caller script
             $backtrace = \debug_backtrace(0);
             self::$script_cwd = self::$cwd = \dirname(\end($backtrace)['file']);
-            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
-                try {
-                    \error_reporting(E_ALL);
-                    \ini_set('log_errors', 1);
-                    \ini_set('error_log', Magic::$script_cwd.DIRECTORY_SEPARATOR.'MadelineProto.log');
-                } catch (\Throwable $e) {
-                    //$this->logger->logger('Could not enable PHP logging');
-                }
-            }
+//            if (PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg') {
+//                try {
+//                    \error_reporting(E_ALL);
+//                    \ini_set('log_errors', 1);
+//                    \ini_set('error_log', Magic::$script_cwd.DIRECTORY_SEPARATOR.'MadelineProto.log');
+//                } catch (\Throwable $e) {
+//                    //$this->logger->logger('Could not enable PHP logging');
+//                }
+//            }
             try {
                 \ini_set('memory_limit', -1);
             } catch (\Throwable $e) {
